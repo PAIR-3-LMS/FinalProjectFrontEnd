@@ -1,0 +1,88 @@
+// Variables
+$primary-color: #F2542D;
+$text-danger-color: #dee2e6;
+$form-background: #f8f9fa;
+$form-border-color: #dee2e6;
+$panel-background: #ffffff;
+$panel-border: 1px solid #ddd;
+
+// Container
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: $form-background;
+  border: 1px solid $form-border-color;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+// Header
+h3 {
+  color: $primary-color;
+  font-weight: bold;
+}
+
+// Form Elements
+.form-label {
+  font-weight: bold;
+}
+
+.form-control {
+  border-radius: 4px;
+  border: 1px solid $form-border-color;
+}
+
+.btn-primary {
+  background-color: $primary-color;
+  border-color: $primary-color;
+  &:hover {
+    background-color: darken($primary-color, 10%);
+    border-color: darken($primary-color, 10%);
+  }
+}
+
+// Error Messages
+.text-danger {
+  color: $text-danger-color;
+  font-size: 0.875em;
+}
+
+// Panel
+.panel {
+  background-color: $panel-background;
+  border: $panel-border;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.panel ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.panel li {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.panel li:hover {
+  background-color: lighten(#007bff, 40%);
+}
+
+// Input Error
+.input-error {
+  border-color: $text-danger-color;
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+}

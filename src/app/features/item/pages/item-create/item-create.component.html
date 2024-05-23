@@ -1,0 +1,181 @@
+<nav class="navbar navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">NINOVA Admin Panel</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">NINOVA</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+
+      
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="['/homepage']">Ana Sayfa</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="['/admin/membergetlist']">Kullanıcı İşlemleri</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="['/admin/itemgetlist']">Materyal İşlemleri</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="['/admin/employeegetlist']">Çalışan İşlemleri</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="['/admin/librarygetlist']">Kütüphane İşlemleri</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+<br>
+<div class="container mt-5">
+  <h3 class="text-center mb-4">Yeni Materyal Ekle</h3>
+
+  <form [formGroup]="itemaddForm" (submit)="submit()" class="row g-3">
+
+    <!-- Sol Alanlar -->
+    <div class="col-md-6">
+
+      <!-- Başlık -->
+      <div class="mb-3">
+        <label class="form-label">Başlık</label>
+        <input formControlName="name" type="text" class="form-control" placeholder="Harry Potter ve Felsefe Taşı"
+          oninput="this.value = this.value.replace(/[^A-Za-z]/g, '')"/>
+        <small *ngIf="hasError('required', 'name')" class="text-danger">Başlık alanı boş olamaz.</small>
+        <small *ngIf="hasError('minlength', 'name')" class="text-danger">Başlık en az 2 karakter uzunluğunda olmalıdır.</small>
+        <small *ngIf="hasError('maxlength', 'name')" class="text-danger">Başlık en fazla 50 karakter uzunluğunda olmalıdır.</small>
+        <small *ngIf="generateCapitalizedName()" class="text-danger">İsmin ilk harfi büyük olmalıdır.</small>
+      </div>
+
+      <!-- Kategori -->
+      <div class="mb-3">
+        <label class="form-label">Kategori</label>
+        <input formControlName="category" type="text" class="form-control" placeholder="Bilim Kurgu, Romantik, Drama"/>
+        <small *ngIf="hasError('required', 'category')" class="text-danger">Kategori alanı boş olamaz.</small>
+        <small *ngIf="hasError('minlength', 'category')" class="text-danger">Kategori en az 2 karakter uzunluğunda olmalıdır.</small>
+        <small *ngIf="hasError('maxlength', 'category')" class="text-danger">Kategori en fazla 40 karakter uzunluğunda olmalıdır.</small>
+      </div>
+
+      <!-- Yayımlanma Tarihi -->
+        <div class="mb-3">
+          <label class="form-label">Yayımlanma Tarihi</label>
+          <input formControlName="publicationDate" 
+                 type="date" 
+                 class="form-control"/>
+          <small *ngIf="hasError('required', 'publicationDate')" class="text-danger">Yayımlanma tarihi alanı boş olamaz.</small>
+          <small *ngIf="isPublicationDatePastOrPresent()" class="text-danger">Yayın tarihi bugün veya geçmişte olmalıdır.</small>
+        </div>
+      
+
+      <!-- Dil -->
+      <div class="mb-3">
+        <label class="form-label">Dil</label>
+        <input formControlName="language" type="text" class="form-control" placeholder="İngilizce, Türkçe, Almanca" 
+          oninput="this.value = this.value.replace(/[^A-Za-z]/g, '')"/>
+        <small *ngIf="hasError('required', 'language')" class="text-danger">Dil alanı boş olamaz.</small>
+        <small *ngIf="hasError('minlength', 'language')" class="text-danger">Dil en az 2 karakter uzunluğunda olmalıdır.</small>
+        <small *ngIf="hasError('maxlength', 'language')" class="text-danger">Dil en fazla 40 karakter uzunluğunda olmalıdır.</small>
+      </div>
+      
+      <!-- ISSN -->
+      <div class="mb-3">
+        <label class="form-label">ISBN</label>
+        <input formControlName="isbn" type="text" class="form-control" placeholder="1234-5678" maxlength="13" oninput="this.value = this.value.replace(/[^0-9-_/.,]/g, '')"/>
+        <small *ngIf="mustBeValidLength()" class="text-danger">ISSN 8, 10 veya 13 karakter uzunluğunda olmalıdır.</small>
+      </div>
+      
+      <!-- Lokasyon ID -->
+      <div class="mb-3">
+        <label class="form-label">Lokasyon ID</label>
+        <input formControlName="locationId" type="text" class="form-control" placeholder="ABC123" (focus)="togglePanel('location')" (keyup)="filterItems($event, 'locations')"/>
+        <small *ngIf="hasError('required', 'locationId')" class="text-danger">Lokasyon ID alanı boş olamaz.</small>
+        <div class="panel" *ngIf="showLocationPanel">
+          <ul>
+            <li *ngFor="let location of filteredLocations" (click)="selectItem(location, 'location'); togglePanel('location')">{{ location }}</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Sol Alanlar Son -->
+    </div>
+    
+    <!-- Sağ Alanlar -->
+    <div class="col-md-6">
+
+      <!-- Açıklama -->
+      <div class="mb-3">
+        <label class="form-label">Açıklama</label>
+        <input formControlName="description" type="text" class="form-control" placeholder="Fantastik, Gizem, Macera"/>
+        <small *ngIf="hasError('required', 'description')" class="text-danger">Açıklama alanı boş olamaz.</small>
+        <small *ngIf="hasError('minlength', 'description')" class="text-danger">Açıklama en az 2 karakter uzunluğunda olmalıdır.</small>
+        <small *ngIf="hasError('maxlength', 'description')" class="text-danger">Açıklama en fazla 500 karakter uzunluğunda olmalıdır.</small>
+      </div>
+
+      <!-- Ürün Tipi -->
+      <div class="mb-3">
+        <label class="form-label">Ürün Tipi</label>
+        <input formControlName="type" type="text" class="form-control" placeholder="Kitap, Film, Müzik" minlength="2" maxlength="30" />
+        <small *ngIf="hasError('required', 'type')" class="text-danger">Ürün tipi alanı boş olamaz.</small>
+      </div>
+      
+      <!-- Tarz -->
+      <div class="mb-3">
+        <label class="form-label">Tarz</label>
+        <input formControlName="genre" type="text" class="form-control" placeholder="Fantastik, Gizem, Macera" minlength="2" maxlength="40" />
+        <small *ngIf="hasError('required', 'genre')" class="text-danger">Tarz alanı boş olamaz.</small>
+      </div>
+
+      <!-- Sayfa Sayısı -->
+      <div class="mb-3">
+        <label class="form-label">Sayfa Sayısı</label>
+        <input formControlName="totalPages" type="number" class="form-control input-error" placeholder="350" />
+        <small *ngIf="hasError('required', 'totalPages')" class="text-danger">Sayfa sayısı alanı boş olamaz.</small>
+        <small *ngIf="hasError('min', 'totalPages')" class="text-danger">Sayfa sayısı 1'den büyük olmalıdır.</small>
+      </div>
+
+      <!-- Yayıncı ID -->
+      <div class="mb-3">
+        <label class="form-label">Yayıncı ID</label>
+          <input formControlName="publisherId" type="text" class="form-control" placeholder="123456" (focus)="togglePanel('publisher')" (keyup)="filterItems($event, 'publishers')"/>
+          <small *ngIf="hasError('required', 'publisherId')" class="text-danger">Yayıncı ID alanı boş olamaz.</small>
+        <div class="panel" *ngIf="showPublisherPanel">
+          <ul>
+            <li *ngFor="let publisher of filteredPublishers" (click)="selectItem(publisher, 'publisher'); togglePanel('publisher')">{{ publisher }}</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Kütüphane ID -->
+      <div class="mb-3">
+        <label class="form-label">Kütüphane ID</label>
+        <input formControlName="libraryId" type="text" class="form-control" placeholder="XYZ789" (focus)="togglePanel('library')" (keyup)="filterItems($event, 'libraries')"/>
+        <small *ngIf="hasError('required', 'libraryId')" class="text-danger">Kütüphane ID alanı boş olamaz.</small>
+        <div class="panel" *ngIf="showLibraryPanel">
+            <ul>
+                <li *ngFor="let library of filteredLibrary" (click)="selectItem(library, 'library'); togglePanel('library')">{{ library }}</li>
+            </ul>
+        </div>
+      </div>
+
+     <!-- Sağ Alanlar Son -->
+    </div>
+
+    
+    <!-- Ürün Ekle Butonu -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-primary" (click)="submit()">
+              Materyal Ekle
+            </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<br> <br><br>

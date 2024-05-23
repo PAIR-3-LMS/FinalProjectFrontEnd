@@ -1,0 +1,12 @@
+<!-- Layout -->
+
+<div class="main-container" [class.dark-theme]="isDarkMode()" [class.light-theme]="!isDarkMode()">
+
+
+<!-- Router'dan gelen sayfa neyse onu göster -->
+
+<router-outlet></router-outlet>
+<app-footer></app-footer>
+</div>
+
+<!--  -->

@@ -1,0 +1,33 @@
+<app-adminpanel></app-adminpanel>
+
+<div class="container mt-5">
+  <h3 class="text-center mb-4">Ödünç Alma</h3>
+  <form [formGroup]="borrowDeleteForm" class="row g-3 justify-content-center">
+      <div class="col-md-6">
+          <label class="form-label">Ödünç Alma ID</label>
+          <input formControlName="borrowId" type="text" class="form-control" placeholder="Harry Potter ve Felsefe Taşı" />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">MemberID</label>
+        <input formControlName="memberId" type="text" class="form-control" placeholder="Harry Potter ve Felsefe Taşı" />
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">Ceza Sebebi</label>
+        <input formControlName="fineType" type="text" class="form-control" placeholder="Harry Potter ve Felsefe Taşı" />
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">Açıklama</label>
+        <input formControlName="description" type="text" class="form-control" placeholder="Harry Potter ve Felsefe Taşı" />
+    </div>
+     
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+              <button type="submit" class="btn btn-primary" (click)="submit()">
+                Ödünç Almayı Tamamla
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>

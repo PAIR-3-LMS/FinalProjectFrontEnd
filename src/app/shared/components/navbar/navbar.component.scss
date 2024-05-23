@@ -1,0 +1,35 @@
+.navbar-nav {
+  flex-direction: row;
+  justify-content: center;
+
+  .nav-item {
+    text-align: center;
+
+    .nav-link {
+      padding: 10px 15px; // Örneğin, düğme boyutuna göre ayarlayabilirsiniz
+    }
+  }
+}
+
+// Bu, fare üzerine geldiğinde arka plan rengini değiştirmek için bir geçiş efekti ekler
+.navbar-dark .nav-item .nav-link:hover {
+  background-color: #f2542d;
+  transition: all 0.3s ease;
+  border-radius: 0.9rem;
+}
+
+.fa-li {
+  position: relative;
+  left: 0;
+}
+
+.profile-img {
+  width: 40px; /* İstenilen genişlik */
+  height: 40px; /* İstenilen yükseklik */
+  border-radius: 50%; /* Oval şekil vermek için */
+  object-fit: cover; /* Resmi oval şekilde sığdırmak için */
+}
+
+.dropdown-toggle::after {
+  display: none !important;
+}

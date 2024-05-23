@@ -1,0 +1,25 @@
+.ikon-ve-metin-container .ikon-metin .english {
+    font-style: italic;
+  }
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    //background-image: url(); /* Arka plan görseli */
+    background-size: cover; /* Görseli sayfa boyutuna sığdır */
+    background-repeat: no-repeat; /* Görselin tekrarlanmasını engelle */
+  }
+  .content {
+    text-align: center;
+    background-color: rgba(155, 149, 149, 0.8); /* Arkaplanı saydam yapar */
+    padding: 20px;
+  }
+  .item {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    margin-left: 20px;
+  }
+  .item svg {
+    margin-right: 5px;
+  }

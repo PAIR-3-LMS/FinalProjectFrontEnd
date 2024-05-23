@@ -1,0 +1,39 @@
+<div class="search-wrapper">
+  <div class="container mt-5" style=>
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-10">
+        <div class="card p-3 py-4">
+          <h5 style= "color: #2B303A;">{{"NINOVA: Search in The Library" | translate}}</h5>
+          <br>
+          <div class="row">
+            <div class="col-12">
+                <div class="row no-gutters">
+                    <!-- Başlık seçimi için select alanı -->
+                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                        <select class="form-control" id="exampleFormControlSelect1" (change)="onFieldSelect($event)">
+                            <option [value]="'name'" [selected]="searchField === 'name'">{{"Title" | translate}}</option>
+                            <option>ISBN</option>
+                            <option>{{"Publisher" | translate}}</option>
+                        </select>
+                    </div>
+                    <!-- Arama metni girişi için input alanı -->
+                    <div class="col-lg-8 col-md-6 col-sm-12 p-0">
+                        <input type="text" [(ngModel)] = "searchValue" placeholder="Ara" class="form-control" id="search" name="search">
+                    </div>
+                    <!-- Arama butonu -->
+                    <div class="col-lg-1 col-md-3 col-sm-12 p-0">
+                        <button type="submit" class="btn btn-base" (click)="searchDynamic()">
+                            <!-- Arama ikonu -->
+                            <svg xmlns="#" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+              </div>
+            </div>
+          </div>
+        </div>      
+      </div>
+    </div>
+  </div>
+</div>

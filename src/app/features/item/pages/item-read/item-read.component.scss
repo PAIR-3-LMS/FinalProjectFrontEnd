@@ -1,0 +1,33 @@
+.container {
+    margin-top: 2rem;
+  }
+  
+  h2 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .table {
+    thead {
+      th {
+        background-color: #f8f9fa;
+      }
+    }
+  }
+  
+  button {
+    margin-right: 27px;
+  }
+  
+  .table-bordered {
+    border: 1px solid #dee2e6;
+  }
+  .table-bordered th,
+  .table-bordered td {
+    border: 1px solid #dee2e6;
+  }
+
+
+
+  .button-spacing {
+    margin-right: 10px; // İstediğiniz mesafeyi burada ayarlayın
+  }

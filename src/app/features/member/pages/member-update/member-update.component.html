@@ -1,0 +1,88 @@
+<div class="container mt-5">
+    <h3 class="text-center mb-4">Üye Bilgilerini Güncelle</h3>
+  
+    <form [formGroup]="memberUpdateForm" (submit)="submit()" class="row g-3">
+  
+      <!-- Sol Alanlar -->
+      <div class="col-md-6">
+  
+        <!-- İsim -->
+        <div class="mb-3">
+          <label class="form-label">İsim</label>
+          <input formControlName="firstName" type="text" class="form-control" placeholder="İsminizi giriniz.."
+            oninput="this.value = this.value.replace(/[^A-Za-z]/g, '')"/>
+          <small *ngIf="hasError('required', 'firstName')" class="text-danger">İsim alanı boş olamaz.</small>
+          <small *ngIf="hasError('minlength', 'firstName')" class="text-danger">İsim en az 2 karakter uzunluğunda olmalıdır.</small>
+          <small *ngIf="hasError('maxlength', 'firstName')" class="text-danger">İsim en fazla 50 karakter uzunluğunda olmalıdır.</small>
+        </div>
+  
+        <!-- Soyisim -->
+        <div class="mb-3">
+          <label class="form-label">Soyisim</label>
+          <input formControlName="lastName" type="text" class="form-control" placeholder="Soyisminizi giriniz.."
+            oninput="this.value = this.value.replace(/[^A-Za-z]/g, '')"/>
+          <small *ngIf="hasError('required', 'lastName')" class="text-danger">Soyisim alanı boş olamaz.</small>
+          <small *ngIf="hasError('minlength', 'lastName')" class="text-danger">Soyisim en az 2 karakter uzunluğunda olmalıdır.</small>
+          <small *ngIf="hasError('maxlength', 'lastName')" class="text-danger">Soyisim en fazla 50 karakter uzunluğunda olmalıdır.</small>
+        </div>
+  
+        <!-- Ulusal Kimlik Numarası -->
+        <div class="mb-3">
+          <label class="form-label">Ulusal Kimlik Numarası</label>
+          <input formControlName="nationalId" type="text" class="form-control" placeholder="T.C. Kimlik Numaranızı giriniz.." />
+          <small *ngIf="hasError('required', 'nationalId')" class="text-danger">Ulusal Kimlik Numarası alanı boş olamaz.</small>
+          <small *ngIf="hasError('pattern', 'nationalId')" class="text-danger">Geçersiz ulusal kimlik numarası formatı.</small>
+        </div>
+  
+        <!-- E-posta -->
+        <div class="mb-3">
+          <label class="form-label">E-posta</label>
+          <input formControlName="email" type="email" class="form-control" placeholder="E-posta adresinizi giriniz.." />
+          <small *ngIf="hasError('required', 'email')" class="text-danger">E-posta alanı boş olamaz.</small>
+          <small *ngIf="hasError('email', 'email')" class="text-danger">Geçerli bir e-posta adresi giriniz.</small>
+        </div>
+
+      </div>
+  
+      <!-- Sağ Alanlar -->
+      <div class="col-md-6">
+  
+        <!-- Telefon Numarası -->
+        <div class="mb-3">
+          <label class="form-label">Telefon Numarası</label>
+          <input formControlName="phoneNumber" type="tel" class="form-control" placeholder="Telefon numaranızı giriniz.." />
+          <small *ngIf="hasError('required', 'phoneNumber')" class="text-danger">Telefon numarası alanı boş olamaz.</small>
+          <small *ngIf="hasError('pattern', 'phoneNumber')" class="text-danger">Geçersiz telefon numarası formatı.</small>
+        </div>
+  
+        <!-- Şifre -->
+        <div class="mb-3">
+          <label class="form-label">Şifre</label>
+          <input formControlName="password" type="password" class="form-control" placeholder="Yeni şifrenizi giriniz.." />
+          <small *ngIf="hasError('required', 'password')" class="text-danger">Şifre alanı boş olamaz.</small>
+          <small *ngIf="hasError('minlength', 'password')" class="text-danger">Şifre en az 6 karakter uzunluğunda olmalıdır.</small>
+        </div>
+  
+        <!-- Adres -->
+        <div class="mb-3">
+          <label class="form-label">Adres</label>
+          <input formControlName="address" type="text" class="form-control" placeholder="Adresinizi giriniz.." />
+          <small *ngIf="hasError('required', 'address')" class="text-danger">Adres alanı boş olamaz.</small>
+          <small *ngIf="hasError('minlength', 'address')" class="text-danger">Adres en az 2 karakter uzunluğunda olmalıdır.</small>
+          <small *ngIf="hasError('maxlength', 'address')" class="text-danger">Adres en fazla 100 karakter uzunluğunda olmalıdır.</small>
+        </div>
+
+      </div>
+      
+      <!-- Üye Bilgilerini Güncelle Butonu -->
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+              <button type="submit" class="btn btn-primary" (click)="submit()">
+                Üye Bilgilerini Güncelle
+              </button>
+          </div>
+        </div>
+      </div>
+    </form>
+</div>

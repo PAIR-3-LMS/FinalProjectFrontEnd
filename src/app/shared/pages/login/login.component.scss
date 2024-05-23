@@ -1,0 +1,19 @@
+.login .bg-dark {
+    background-color: rgb(12, 129, 224) !important;
+}
+
+.form-label {
+    color: #f7f7f7;
+}
+
+.text-white-50 {
+    --bs-text-opacity: 1;
+    color: rgb(255, 255, 255) !important;
+}
+
+.card-body {
+    background: rgba(12, 129, 224, 1);
+    border-radius: 10px;
+    border: 2px solid rgba(12, 129, 224, 1); /* Çerçeve oluştur */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti ekle */
+}

@@ -1,0 +1,58 @@
+.advanced {
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #2B303A !important; /* .advanced sınıfının rengini ayarla */
+}
+
+
+
+.form-control:focus {
+  box-shadow: none;
+  border: 1px solid #2B303A;
+}
+
+.container {
+  /* Arkaplan resmi ve ölçekleme ayarları */
+  background-image: url('#');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+
+
+.advanced{
+
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+
+.btn-secondary,
+.btn-secondary:focus,
+.btn-secondary:active
+
+
+{
+  color: #fff;
+  background-color: #2B303A !important;
+  border-color: #2B303A !important;
+  box-shadow: none;
+}
+
+.form-control:focus{
+  box-shadow: none;
+  border: 1px solid #F2542D;
+}
+
+.search-wrapper{
+  display:flex;
+  align-items:center;
+  justify-content: center;
+  padding: 4rem 0;
+  background-image: url(https://picsum.photos/1920/600);
+  background-repeat: no-repeat;
+  background-size: cover;
+}

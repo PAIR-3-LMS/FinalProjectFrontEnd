@@ -1,0 +1,18 @@
+<app-adminpanel></app-adminpanel>
+
+<div class="container mt-5">
+    <h3 class="text-center mb-4">Ürün Silme</h3>
+        <div class="col-md-6">
+            <label class="form-label">Ürün ID</label>
+            <input [(ngModel)]="itemDeleteId" type="text" class="form-control" placeholder="Harry Potter ve Felsefe Taşı" />
+        </div>
+    <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+              <button type="submit" class="btn btn-primary" (click)="submit()">
+                Ürün Sil
+              </button>
+          </div>
+        </div>
+      </div>
+</div>

@@ -1,0 +1,72 @@
+<br>
+<div class="container mt-5">
+    <h3 class="text-center mb-4">Yeni Kütüphane Ekle</h3>
+  
+    <form [formGroup]="libraryAddForm" (submit)="submit()" class="row g-3">
+  
+      <!-- Sol Alanlar -->
+      <div class="col-md-6">
+  
+        <!-- Başlık -->
+        <div class="mb-3">
+          <label class="form-label">İsim</label>
+          <input formControlName="name" type="text" class="form-control" placeholder="Adınızı giriniz.."
+            oninput="this.value = this.value.replace(/[^A-Za-z]/g, '')"/>
+          <small *ngIf="hasError('required', 'name')" class="text-danger">Başlık alanı boş olamaz.</small>
+          <small *ngIf="hasError('minlength', 'name')" class="text-danger">Başlık en az 2 karakter uzunluğunda olmalıdır.</small>
+          <small *ngIf="hasError('maxlength', 'name')" class="text-danger">Başlık en fazla 50 karakter uzunluğunda olmalıdır.</small>
+          <small *ngIf="generateCapitalizedName()" class="text-danger">İsmin ilk harfi büyük olmalıdır.</small>
+        </div>
+  
+        <!-- Kategori -->
+        <div class="mb-3">
+          <label class="form-label">Adres</label>
+          <input formControlName="category" type="text" class="form-control" placeholder="Adresinizi giriniz.."/>
+          <small *ngIf="hasError('required', 'category')" class="text-danger">Kategori alanı boş olamaz.</small>
+          <small *ngIf="hasError('minlength', 'category')" class="text-danger">Kategori en az 2 karakter uzunluğunda olmalıdır.</small>
+          <small *ngIf="hasError('maxlength', 'category')" class="text-danger">Kategori en fazla 40 karakter uzunluğunda olmalıdır.</small>
+        </div>
+  
+        
+        
+        <!-- Dil -->
+        <div class="mb-3">
+          <label class="form-label">Web Sitesi</label>
+          <input formControlName="language" type="text" class="form-control" placeholder="www.örnek.com.." 
+            oninput="this.value = this.value.replace(/[^A-Za-z]/g, '')"/>
+          <small *ngIf="hasError('required', 'language')" class="text-danger">Dil alanı boş olamaz.</small>
+          <small *ngIf="hasError('minlength', 'language')" class="text-danger">Dil en az 2 karakter uzunluğunda olmalıdır.</small>
+          <small *ngIf="hasError('maxlength', 'language')" class="text-danger">Dil en fazla 40 karakter uzunluğunda olmalıdır.</small>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Telefon Numarası</label>
+            <input formControlName="phoneNumber" type="tel" class="form-control" placeholder="Telefon numaranızı giriniz.." />
+            <small *ngIf="hasError('required', 'phoneNumber')" class="text-danger">Telefon numarası alanı boş olamaz.</small>
+            <small *ngIf="hasError('pattern', 'phoneNumber')" class="text-danger">Geçersiz telefon numarası formatı.</small>
+          </div>
+
+      <!-- Sağ Alanlar -->
+      <div class="col-md-6">
+  
+        <!-- Açıklama -->
+        <div class="mb-3">
+          <label class="form-label">Şehir</label>
+          <input formControlName="description" type="text" class="form-control" placeholder="Şehir adı giriniz.."/>
+          <small *ngIf="hasError('required', 'description')" class="text-danger">Açıklama alanı boş olamaz.</small>
+          <small *ngIf="hasError('minlength', 'description')" class="text-danger">Açıklama en az 2 karakter uzunluğunda olmalıdır.</small>
+          <small *ngIf="hasError('maxlength', 'description')" class="text-danger">Açıklama en fazla 500 karakter uzunluğunda olmalıdır.</small>
+        </div>
+  <!-- Ürün Ekle Butonu -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+          <button type="submit" class="btn btn-primary" (click)="submit()">
+            Kütüphane Ekle
+          </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+<br>
+<br> <br><br>

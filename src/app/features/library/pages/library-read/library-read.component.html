@@ -1,0 +1,39 @@
+<br>
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2>Kütüphane Listesi</h2>
+      <input type="text" class="form-control w-25" [(ngModel)]="searchTerm" (input)="searchLibraries()" placeholder="Ara...">
+      <a routerLink="/admin/libraryadd" class="btn btn-primary">
+        Yeni Kütüphane Ekle
+      </a>
+    </div>
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Ad</th>
+          <th>Adres</th>
+          <th>Telefon</th>
+          <th>Şehir</th>
+          <th>Web Sitesi</th>
+          <th>İşlemler</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let library of filteredLibraries">
+          <td>{{ library.name }}</td>
+          <td>{{ library.address }}</td>
+          <td>{{ library.phoneNumber }}</td>
+          <td>{{ library.city }}</td>
+          <td>{{ library.website }}</td>
+          <td>
+            <button class="btn btn-sm btn-warning mr-2" (click)="updateLibrary(library.name)">
+              <i class="bi bi-pencil-fill"></i> Güncelle
+            </button>
+            <button class="btn btn-sm btn-danger" (click)="deleteLibrary(library.name)">
+              <i class="bi bi-trash-fill"></i> Sil
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
